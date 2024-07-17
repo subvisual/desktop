@@ -42,6 +42,8 @@ const BalanceControl = ({
   const [isShowingConfirm, setIsShowingConfirm] = useState(false)
   const hasSufficientBalance = Number(walletBalance) >= sendThreshold
 
+  const formattedBalance = formatFilValue(walletBalance)
+
   return (
     <Transition
       on={!isShowingConfirm}
@@ -58,7 +60,7 @@ const BalanceControl = ({
           className='flex flex-col gap-5 text-center m-auto'
         >
           <Text as="p" size='s'>
-              Send <strong>{formatFilValue(walletBalance)} FIL</strong> to {' '}
+              Send <strong>{formattedBalance} FIL</strong> to {' '}
             <strong>{truncateString(destinationFilAddress || '')}</strong>?
           </Text>
           <div className='flex gap-5 justify-center'>
@@ -96,10 +98,10 @@ const BalanceControl = ({
               size="xl"
               bold
               className={classNames('text-slate-50 text-center',
-                formatFilValue(walletBalance).length > 8 ? 'text-[1.85rem]' : 'text-[2rem]'
+                formattedBalance.length > 8 ? 'text-[1.85rem]' : 'text-[2rem]'
               )}
             >
-              {formatFilValue(walletBalance)} FIL
+              {formattedBalance} FIL
             </Text>
           </div>
           <div className='h-[45%] flex flex-col'>
